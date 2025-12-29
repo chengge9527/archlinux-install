@@ -21,7 +21,7 @@ mount ${DISK}1 /mnt/boot/efi
 swapon ${DISK}2
 
 echo ">>> 安装基础系统"
-pacstrap /mnt base linux linux-firmware vim nano networkmanager grub efibootmgr
+pacstrap /mnt base base-devel linux linux-firmware intel-ucode gvim networkmanager grub efibootmgr
 
 echo ">>> 生成 fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
