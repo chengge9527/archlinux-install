@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-DISK=/dev/sda   # ⚠️ 请确认这是你的目标磁盘设备号
+DISK=/dev/nvme0n1    # ⚠️ 请确认这是你的目标磁盘设备号
 
 echo ">>> 分区磁盘"
 parted -s $DISK mklabel gpt
