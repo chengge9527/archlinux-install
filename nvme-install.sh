@@ -10,15 +10,17 @@ parted -s $DISK mkpart primary linux-swap 1025MiB 9217MiB  # sda2 SWAP 8G
 parted -s $DISK mkpart primary ext4 9217MiB 100%           # sda3 根分区
 
 echo ">>> 格式化分区"
-mkfs.fat -F32 ${DISK}1 -n EFI
-mkswap ${DISK}2 -L SWAP
-mkfs.ext4 ${DISK}3 -L ROOT
+mkfs.fat -F32 ${DISK}p1 -n EFI
+mkswap ${DISK}p2 -L SWAP
+mkfs.ext4 ${DISK}p3 -L ROOT
 
 echo ">>> 挂载分区"
-mount ${DISK}3 /mnt
+mount ${DISK}p3 /mnt
 mkdir -p /mnt/boot/efi
-mount ${DISK}1 /mnt/boot/efi
-swapon ${DISK}2
+mkdir -p /mnt/home
+mount ${DISK}p1 /mnt/boot/efi
+mount /dev/sda /mnt/home
+swapon ${DISK}p2
 
 echo ">>> 安装基础系统"
 pacstrap /mnt base base-devel linux linux-firmware intel-ucode gvim networkmanager grub efibootmgr
