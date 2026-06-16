@@ -27,7 +27,7 @@ swapon ${DISK}p2
 
 echo ">>> 安装基础系统"
 # 加上 vim 和 sudo
-pacstrap /mnt base base-devel linux linux-firmware intel-ucode vim networkmanager grub efibootmgr
+pacstrap /mnt base base-devel linux linux-firmware intel-ucode gvim networkmanager grub efibootmgr
 
 echo ">>> 生成 fstab"
 genfstab -U /mnt >> /mnt/etc/fstab
